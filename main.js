@@ -1,6 +1,7 @@
 window.onload = function(){
 	console.log("Hello World!");
 	const cv = document.getElementById("myCanvas");
+	const btn = document.getElementById("delbtn");
 	const ctx = cv.getContext("2d");
 	const img = {};
 	let frames = 0;
@@ -14,23 +15,27 @@ window.onload = function(){
 	// s2.src = "image/s2.png";
 	const card = {
 		data:[],
-		x:0,
-		y:0,
-		num:1,
-		add:function(x,y,num){
-			this.data.push({x:x,y:y,num:"s"+String(num)});
+		add:function(){
+			this.data.push({num:"s"+String(getRandom(1,13))});
+		},
+		del:function(n){
+			this.data.splice(n,1);
 		},
 		draw:function(){
-			const cardimg = img["s"+String(this.num)];
+			// const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
-				ctx.drawImage(img[this.data[i]["num"]],this.data[i]["x"],this.data[i]["y"],80,128);
+				ctx.drawImage(img[this.data[i]["num"]],(i%4)*80+40,Math.floor(i/4)*128,80,128);
 			}
 		},
 	};
-	window.addEventListener("click",function(){
+	cv.addEventListener("click",function(){
 		console.log("clicked!!");
 		c ++;
-		card.add(((c-1)%4)*80,Math.floor((c-1)/4)*128,getRandom(1,13));
+		// card.add(((c-1)%4)*80,Math.floor((c-1)/4)*128,getRandom(1,13));
+		card.add();
+	});
+	btn.addEventListener("click",function(){
+		card.del(1);
 	});
 	loop();
 	let c = 0;
