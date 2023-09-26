@@ -23,20 +23,22 @@ window.onload = function(){
 		draw:function(){
 			const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
-				ctx.drawImage(img[this.data[i]["num"]],this.data[i]["x"],this.data[i]["y"],100,160);
+				ctx.drawImage(img[this.data[i]["num"]],this.data[i]["x"],this.data[i]["y"],80,128);
 			}
 		},
 	};
 	window.addEventListener("click",function(){
 		console.log("clicked!!");
+		c ++;
+		card.add(((c-1)%4)*80,Math.floor((c-1)/4)*128,getRandom(1,13));
 	});
 	loop();
 	let c = 0;
 	function update(){
 		frames ++;
 		if(frames % 60 == 0){
-			c ++;
-			card.add(((c-1)%4)*100,Math.floor((c-1)/4)*160,getRandom(1,13));
+			// c ++;
+			// card.add(((c-1)%4)*100,Math.floor((c-1)/4)*160,getRandom(1,13));
 		}
 	}
 	function drawAll(){
