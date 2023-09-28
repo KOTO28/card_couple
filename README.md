@@ -11,3 +11,4 @@
 ## このゲームについて
 
 - トランプのカップルという一人用ゲームです。
+- [こちら](https://koto28.github.io/card_couple/ "https://koto28.github.io/card_couple/")で遊ぶことができます。（未完成ですが）
