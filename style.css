@@ -6,7 +6,8 @@ canvas{
 	margin: 0;
 }
 button{
-	position:absolute;
+	padding: 10px 20px;
+	position:fixed;
 	top:0px;
 	right:0px;
 }
