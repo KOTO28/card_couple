@@ -1,3 +1,6 @@
+const card_sx = 80;
+const card_sy = 128;
+
 window.onload = function(){
 	console.log("Hello World!");
 	const cv = document.getElementById("myCanvas");
@@ -24,21 +27,37 @@ window.onload = function(){
 		draw:function(){
 			// const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
-				ctx.drawImage(img[this.data[i]["num"]],(i%4)*80+40,Math.floor(i/4)*128,80,128);
+				ctx.drawImage(img[this.data[i]["num"]],(i%4)*card_sx+40,Math.floor(i/4)*card_sy,card_sx,card_sy);
 			}
 		},
 	};
-	cv.addEventListener("click",function(){
+	cv.addEventListener("click",function(event){
 		console.log("clicked!!");
-		c ++;
-		// card.add(((c-1)%4)*80,Math.floor((c-1)/4)*128,getRandom(1,13));
-		card.add();
+		let nai = true;
+		// c ++;
+		// card.add(((c-1)%4)*card_sx,Math.floor((c-1)/4)*card_sy,getRandom(1,13));
+		for(let i = 0;i < card.data.length;i++){
+			if(
+				(i%4)*card_sx+40 < event.x &&
+				event.x < (i%4)*card_sx+40+card_sx &&
+				Math.floor(i/4)*card_sy < event.y &&
+				event.y < Math.floor(i/4)*card_sy+card_sy
+			){
+				console.log("click num:"+i);
+				console.log("click is:"+card.data[i]["num"]);
+				nai = false;
+				card.del(i);
+			}
+		}
+		if(nai){
+			card.add();
+		}
 	});
-	btn.addEventListener("click",function(){
+	btn.addEventListener("click",function(event){
 		card.del(1);
 	});
 	loop();
-	let c = 0;
+	// let c = 0;
 	function update(){
 		frames ++;
 		if(frames % 60 == 0){
