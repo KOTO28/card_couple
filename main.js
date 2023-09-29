@@ -12,6 +12,7 @@ window.onload = function(){
 		img["s"+String(i)] = new Image();
 		img["s"+String(i)].src = "image/s"+String(i)+".png";
 	}
+	let select = -1;
 	// const s1 = new Image();
 	// s1.src = "image/s1.png";
 	// const s2 = new Image();
@@ -28,6 +29,13 @@ window.onload = function(){
 			// const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
 				ctx.drawImage(img[this.data[i]["num"]],(i%4)*card_sx+40,Math.floor(i/4)*card_sy,card_sx,card_sy);
+			}
+			if(select != -1){
+				ctx.beginPath();
+				ctx.rect((select%4)*card_sx+40, Math.floor(select/4)*card_sy,card_sx,card_sy);
+				ctx.strokeStyle = 'deepskyblue';
+				ctx.lineWidth = 4;
+				ctx.stroke();
 			}
 		},
 	};
@@ -47,7 +55,8 @@ window.onload = function(){
 				console.log("click num:"+i);
 				console.log("click is:"+card.data[i]["num"]);
 				nai = false;
-				card.del(i);
+				// card.del(i);
+				select = i;
 			}
 		}
 		if(nai){
@@ -55,7 +64,7 @@ window.onload = function(){
 		}
 	});
 	btn.addEventListener("click",function(event){
-		card.del(1);
+		card.del(select);
 	});
 	loop();
 	// let c = 0;
