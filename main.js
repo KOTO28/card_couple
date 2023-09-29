@@ -33,15 +33,16 @@ window.onload = function(){
 	};
 	cv.addEventListener("click",function(event){
 		console.log("clicked!!");
+		console.log("x:"+event.pageX+",y:"+event.pageY);
 		let nai = true;
 		// c ++;
 		// card.add(((c-1)%4)*card_sx,Math.floor((c-1)/4)*card_sy,getRandom(1,13));
 		for(let i = 0;i < card.data.length;i++){
 			if(
-				(i%4)*card_sx+40 < event.x &&
-				event.x < (i%4)*card_sx+40+card_sx &&
-				Math.floor(i/4)*card_sy < event.y &&
-				event.y < Math.floor(i/4)*card_sy+card_sy
+				(i%4)*card_sx+40 < event.pageX &&
+				event.pageX < (i%4)*card_sx+40+card_sx &&
+				Math.floor(i/4)*card_sy < event.pageY &&
+				event.pageY < Math.floor(i/4)*card_sy+card_sy
 			){
 				console.log("click num:"+i);
 				console.log("click is:"+card.data[i]["num"]);
