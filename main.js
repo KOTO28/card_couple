@@ -61,6 +61,15 @@ window.onload = function(){
 		}
 		if(nai){
 			card.add();
+			select = -1;
+		}
+	});
+	window.addEventListener("keypress",function(event){
+		console.log("keypress:"+event.key);
+		if(event.key == " "){
+			card.add();
+			select = -1;
+			event.preventDefault();//スクロールを無効化
 		}
 	});
 	btn.addEventListener("click",function(event){
