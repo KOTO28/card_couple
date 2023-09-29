@@ -20,15 +20,15 @@ window.onload = function(){
 	const card = {
 		data:[],
 		add:function(){
-			this.data.push({num:"s"+String(getRandom(1,13))});
+			this.data.push("s"+String(getRandom(1,13)));
 		},
 		del:function(n){
-			this.data.splice(n,1);
+			this.data.splice(n,1);//n番目から1つ削除
 		},
 		draw:function(){
 			// const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
-				ctx.drawImage(img[this.data[i]["num"]],(i%4)*card_sx+40,Math.floor(i/4)*card_sy,card_sx,card_sy);
+				ctx.drawImage(img[this.data[i]],(i%4)*card_sx+40,Math.floor(i/4)*card_sy,card_sx,card_sy);
 			}
 			if(select != -1){
 				ctx.beginPath();
@@ -53,16 +53,21 @@ window.onload = function(){
 				event.pageY < Math.floor(i/4)*card_sy+card_sy
 			){
 				console.log("click num:"+i);
-				console.log("click is:"+card.data[i]["num"]);
-				nai = false;
-				// card.del(i);
+				console.log("click is:"+card.data[i]);
+				if(select != -1){
+					if(card.data[select] == card.data[i]){
+						card.del(select);
+						card.del(i);
+						select = -1;
+						return;
+					}
+				}
 				select = i;
+				return;
 			}
 		}
-		if(nai){
-			card.add();
-			select = -1;
-		}
+		card.add();
+		select = -1;
 	});
 	window.addEventListener("keypress",function(event){
 		console.log("keypress:"+event.key);
