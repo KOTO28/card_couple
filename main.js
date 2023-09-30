@@ -1,5 +1,5 @@
-const card_sx = 80;
-const card_sy = 128;
+const card_w = 80;
+const card_h = 128;
 const card_px = 4;
 
 window.onload = function(){
@@ -37,11 +37,11 @@ window.onload = function(){
 		draw:function(){
 			// const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
-				ctx.drawImage(img[this.data[i]],(i%4)*card_sx+40,Math.floor(i/4)*card_sy,card_sx,card_sy);
+				ctx.drawImage(img[this.data[i]],(i%card_px)*card_w+card_w/2,Math.floor(i/card_px)*card_h+card_h/2,card_w,card_h);
 			}
 			if(select != -1){
 				ctx.beginPath();
-				ctx.rect((select%4)*card_sx+40, Math.floor(select/4)*card_sy,card_sx,card_sy);
+				ctx.rect((select%card_px)*card_w+card_w/2, Math.floor(select/card_px)*card_h+card_h/2,card_w,card_h);
 				ctx.strokeStyle = '#00f';
 				ctx.lineWidth = 4;
 				ctx.stroke();
@@ -53,13 +53,13 @@ window.onload = function(){
 		// console.log("x:"+event.pageX+",y:"+event.pageY);
 		let nai = true;
 		// c ++;
-		// card.add(((c-1)%4)*card_sx,Math.floor((c-1)/4)*card_sy,getRandom(1,13));
+		// card.add(((c-1)%card_px)*card_w,Math.floor((c-1)/card_px)*card_h,getRandom(1,13));
 		for(let i = 0;i < card.data.length;i++){
 			if(
-				(i%4)*card_sx+40 < event.pageX &&
-				event.pageX < (i%4)*card_sx+40+card_sx &&
-				Math.floor(i/4)*card_sy < event.pageY &&
-				event.pageY < Math.floor(i/4)*card_sy+card_sy
+				(i%card_px)*card_w+card_w/2 < event.pageX &&
+				event.pageX < (i%card_px)*card_w+card_w/2+card_w &&
+				Math.floor(i/card_px)*card_h+card_h/2 < event.pageY &&
+				event.pageY < Math.floor(i/card_px)*card_h+card_h+card_h/2
 			){
 				// console.log("click num:"+i);
 				// console.log("click is:"+card.data[i]);
@@ -155,7 +155,7 @@ window.onload = function(){
 		frames ++;
 		if(frames % 60 == 0){
 			// c ++;
-			// card.add(((c-1)%4)*100,Math.floor((c-1)/4)*160,getRandom(1,13));
+			// card.add(((c-1)%card_px)*100,Math.floor((c-1)/card_px)*160,getRandom(1,13));
 		}
 	}
 	function drawAll(){
