@@ -9,10 +9,15 @@ window.onload = function(){
 	const ctx = cv.getContext("2d");
 	const img = {};
 	let frames = 0;
-	for (let i = 1; i <= 13; i++){
-		img["s"+String(i)] = new Image();
-		img["s"+String(i)].src = "image/s"+String(i)+".png";
+	const mark = ["s","c","d","h"];
+	for(m in mark){
+		// console.log("m:"+m);
+		for (let i = 1; i <= 13; i++){
+			img[mark[m]+String(i)] = new Image();
+			img[mark[m]+String(i)].src = "image/"+mark[m]+String(i)+".png";
+		}
 	}
+	// console.log("img"+img);
 	let select = -1;
 	// const s1 = new Image();
 	// s1.src = "image/s1.png";
@@ -21,7 +26,7 @@ window.onload = function(){
 	const card = {
 		data:[],
 		add:function(){
-			this.data.push("s"+String(getRandom(1,13)));
+			this.data.push(mark[getRandom(0,3)]+String(getRandom(1,13)));
 		},
 		del:function(n){
 			this.data.splice(n,1);//n番目から1つ削除
@@ -57,7 +62,7 @@ window.onload = function(){
 				// console.log("click is:"+card.data[i]);
 				if(select != -1 && select != i){
 					// console.log("a");
-					if(card.data[select] == card.data[i]){
+					if(card.data[select].substr(1) == card.data[i].substr(1)){
 						// console.log("b");
 						let jouken = false;
 						if(//左端
