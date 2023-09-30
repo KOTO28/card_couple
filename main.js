@@ -119,6 +119,9 @@ window.onload = function(){
 								card.del(i);
 							}
 							select = -1;
+							if(stock.length <= 0 && card.data.length <= 0){
+								alert("クリア!\nおめでとう!");
+							}
 							return;
 						}
 					}
