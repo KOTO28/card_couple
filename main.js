@@ -5,7 +5,7 @@ const card_px = 4;
 window.onload = function(){
 	console.log("Hello World!");
 	const cv = document.getElementById("myCanvas");
-	const btn = document.getElementById("delbtn");
+	// const btn = document.getElementById("delbtn");
 	const ctx = cv.getContext("2d");
 	const img = {};
 	let frames = 0;
