@@ -8,6 +8,7 @@ window.onload = function(){
 	// const btn = document.getElementById("delbtn");
 	const ctx = cv.getContext("2d");
 	const img = {};
+	const stock = [];
 	let frames = 0;
 	const mark = ["s","c","d","h"];
 	for(m in mark){
@@ -15,6 +16,7 @@ window.onload = function(){
 		for (let i = 1; i <= 13; i++){
 			img[mark[m]+String(i)] = new Image();
 			img[mark[m]+String(i)].src = "image/"+mark[m]+String(i)+".png";
+			stock.push(mark[m]+String(i));
 		}
 	}
 	// console.log("img"+img);
@@ -25,8 +27,9 @@ window.onload = function(){
 	// s2.src = "image/s2.png";
 	const card = {
 		data:[],
-		add:function(){
-			this.data.push(mark[getRandom(0,3)]+String(getRandom(1,13)));
+		add:function(n){
+			this.data.push(stock[n]);
+			stock.splice(n,1);//n番目から1つ削除
 		},
 		del:function(n){
 			this.data.splice(n,1);//n番目から1つ削除
@@ -124,13 +127,21 @@ window.onload = function(){
 				return;
 			}
 		}
-		card.add();
+		if(0 < stock.length){
+			card.add(getRandom(0,stock.length-1));
+		}else{
+			alert("すべて出し切りました！");
+		}
 		select = -1;
 	});
 	window.addEventListener("keypress",function(event){
 		console.log("keypress:"+event.key);
 		if(event.key == " "){
-			card.add();
+			if(0 < stock.length){
+				card.add(getRandom(0,stock.length-1));
+			}else{
+				alert("すべて出し切りました！");
+			}
 			select = -1;
 			event.preventDefault();//スクロールを無効化
 		}
