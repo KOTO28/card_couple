@@ -1,13 +1,71 @@
 body{
-	margin: 1px;
+	margin: 0;
+	height: 100vh;
+	width: 100%;
 }
 canvas{
 	border: 1px solid #000;
 	margin: 0;
+}
+#myCanvas{
+	width: 400px;
+	height: 1792px;
 }
 button{
 	padding: 10px 20px;
 	position:fixed;
 	top:0px;
 	right:0px;
+}
+/* PC */
+@media(min-width:751px){
+	#contener{
+		height: 100%;
+		width: 100%;
+		display: flex;
+	}
+	#main-content{
+		height: 100%;
+		width: 50%;
+		overflow-y: scroll;
+		background-color: #0f0;
+	}
+	#sub-content{
+		color: blue;
+		background-color: pink !important;
+		height: 100%;
+		width: 50%;
+		overflow-y: scroll;
+		background-color: #f00;
+	}
+	#text-content{
+		display: none;
+	}
+}
+/* スマホ */
+@media(max-width:750px){
+	#contener{
+		height: 90%;
+		width: 100%;
+		display: flex;
+	}
+	#main-content{
+		height: 100%;
+		width: 100%;
+		overflow-y: scroll;
+		background-color: #0f0;
+	}
+	#sub-content{
+		background-color: aqua !important;
+		display: none;
+	}
+	#text-content{
+		background-color: #0cc;
+		margin: 0;
+		height: 10%;
+		width: 100vw;
+	}
+	#text-content > p{
+		margin: 0;
+	}
 }
