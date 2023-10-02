@@ -49,17 +49,19 @@ window.onload = function(){
 		},
 	};
 	cv.addEventListener("click",function(event){
+		let cx = (event.pageX-cv.offsetLeft)*400/cv.clientWidth;
+		let cy = (event.pageY-cv.offsetTop)*1792/cv.clientHeight;
 		// console.log("clicked!!");
-		// console.log("x:"+event.pageX+",y:"+event.pageY);
+		// console.log("x:"+cx+",y:"+cy);
 		let nai = true;
 		// c ++;
 		// card.add(((c-1)%card_px)*card_w,Math.floor((c-1)/card_px)*card_h,getRandom(1,13));
 		for(let i = 0;i < card.data.length;i++){
 			if(
-				(i%card_px)*card_w+card_w/2 < event.pageX &&
-				event.pageX < (i%card_px)*card_w+card_w/2+card_w &&
-				Math.floor(i/card_px)*card_h+card_h/2 < event.pageY &&
-				event.pageY < Math.floor(i/card_px)*card_h+card_h+card_h/2
+				(i%card_px)*card_w+card_w/2 < cx &&
+				cx < (i%card_px)*card_w+card_w/2+card_w &&
+				Math.floor(i/card_px)*card_h+card_h/2 < cy &&
+				cy < Math.floor(i/card_px)*card_h+card_h+card_h/2
 			){
 				// console.log("click num:"+i);
 				// console.log("click is:"+card.data[i]);
