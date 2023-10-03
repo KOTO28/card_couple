@@ -3,10 +3,16 @@ body{
 	height: 100vh;
 	width: 100%;
 }
+#canvas-box{
+	width: 80%;
+	max-width: 500px;
+	margin: 10px auto;
+}
 #myCanvas{
 	border: 1px solid #000;
-	margin: 10px calc(10% - 1px);
-	width: 80%;
+	/* margin: 10px calc(10% - 1px); */
+	width: 100%;
+	/* max-width: 500px; */
 }
 button{
 	padding: 10px 20px;
