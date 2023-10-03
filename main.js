@@ -1,6 +1,8 @@
 const card_w = 80;
 const card_h = 128;
 const card_px = 4;
+const canvas_ow = 400;
+const canvas_oh = 1792;
 
 window.onload = function(){
 	console.log("Hello World!");
@@ -49,8 +51,8 @@ window.onload = function(){
 		},
 	};
 	cv.addEventListener("click",function(event){
-		let cx = (event.pageX-cv.offsetLeft)*400/cv.clientWidth;
-		let cy = (event.pageY-cv.offsetTop)*1792/cv.clientHeight;
+		let cx = (event.pageX-cv.offsetLeft)*canvas_ow/cv.clientWidth;
+		let cy = (event.pageY-cv.offsetTop)*canvas_oh/cv.clientHeight;
 		// console.log("clicked!!");
 		// console.log("x:"+cx+",y:"+cy);
 		let nai = true;
