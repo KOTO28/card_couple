@@ -3,6 +3,30 @@ body{
 	height: 100vh;
 	width: 100%;
 }
+header{
+	background-color: #777;
+	height: 80px;
+	width: 100%;
+}
+header > ul{
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+header > ul > li{
+	padding: 0 4px;
+	line-height: 80px;
+	display: inline;
+	font-size: 30px;
+}
+/* header > a{
+	margin: 0;
+	line-height: 80px;
+	color: #000;
+	padding-left: 20px;
+	font-size: 30px;
+	text-decoration: none;
+} */
 #canvas-box{
 	width: 80%;
 	max-width: 500px;
@@ -20,6 +44,24 @@ button{
 	top:0px;
 	right:0px;
 }
+
+footer{
+	padding-bottom: 10px;
+	border-top: solid 1px #d4d4d4;
+	background-color: #ddd;
+}
+footer > ul{
+	text-align: center;
+	padding: 0;
+}
+footer > ul > li{
+	padding: 0 4px;
+	display: inline;
+}
+footer > p{
+	text-align: center;
+}
+
 /* PC */
 /* @media(min-width:751px){
 	#contener{
