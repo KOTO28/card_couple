@@ -4,6 +4,9 @@ body{
 	width: 100%;
 }
 header{
+	position: fixed;
+	top: 0;
+	left: 0;
 	background-color: #777;
 	height: 80px;
 	width: 100%;
@@ -27,6 +30,10 @@ header > ul > li{
 	font-size: 30px;
 	text-decoration: none;
 } */
+#header-back{
+	height: 80px;
+	width: 100%;
+}
 #canvas-box{
 	width: 80%;
 	max-width: 500px;

@@ -169,6 +169,7 @@ window.onload = function(){
 		ctx.fillStyle = "#080";
 		ctx.fillRect(0,0,cv.width,cv.height);
 		card.draw();
+		document.querySelector('#stock').textContent = "山札:"+stock.length;
 	}
 	function loop(){
 		requestAnimationFrame(loop);
