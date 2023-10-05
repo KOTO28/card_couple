@@ -7,7 +7,7 @@ const canvas_oh = 1792;
 window.onload = function(){
 	console.log("Hello World!");
 	const cv = document.getElementById("myCanvas");
-	// const btn = document.getElementById("delbtn");
+	const btn_hint = document.querySelector("#button_hint");
 	const ctx = cv.getContext("2d");
 	const img = {};
 	const stock = [];
@@ -67,70 +67,22 @@ window.onload = function(){
 			){
 				// console.log("click num:"+i);
 				// console.log("click is:"+card.data[i]);
-				if(select != -1 && select != i){
-					// console.log("a");
-					if(card.data[select].substr(1) == card.data[i].substr(1)){
-						// console.log("b");
-						let jouken = false;
-						if(//左端
-							select % card_px == 0
-						){
-							console.log("左端");
-							if(
-								i == select-card_px ||//上
-								i == select-card_px+1 ||//右上
-								i == select+1 ||//右
-								i == select+card_px ||//下
-								i == select+card_px+1//右下
-							){
-								jouken = true
-							}
-						}else if(//右端
-							select % card_px == 3
-						){
-							console.log("右端");
-							if(
-								i == select-card_px ||//上
-								i == select-card_px-1 ||//左上
-								i == select-1 ||//左
-								i == select+card_px ||//下
-								i == select+card_px-1//左下
-							){
-								jouken = true
-							}
-						}else{
-							console.log("真ん中");
-							if(
-								i == select-card_px-1 ||//左上
-								i == select-card_px ||//上
-								i == select-card_px+1 ||//右上
-								i == select+1 ||//右
-								i == select-1 ||//左
-								i == select+card_px-1 ||//左下
-								i == select+card_px ||//下
-								i == select+card_px+1//右下
-							){
-								jouken = true
-							}
-						}
-						if(jouken){
-							// console.log("c");
-							if(select < i){
-								card.del(i);
-								card.del(select);
-							}else{
-								card.del(select);
-								card.del(i);
-							}
-							select = -1;
-							if(stock.length <= 0 && card.data.length <= 0){
-								alert("クリア!\nおめでとう!");
-							}
-							return;
-						}
+				if(CardCheck(card,select,i)){
+					// console.log("c");
+					if(select < i){
+						card.del(i);
+						card.del(select);
+					}else{
+						card.del(select);
+						card.del(i);
 					}
+					select = -1;
+					if(stock.length <= 0 && card.data.length <= 0){
+						alert("クリア!\nおめでとう!");
+					}
+				}else{
+					select = i;
 				}
-				select = i;
 				return;
 			}
 		}
@@ -142,7 +94,7 @@ window.onload = function(){
 		select = -1;
 	});
 	window.addEventListener("keypress",function(event){
-		console.log("keypress:"+event.key);
+		console.log("keypress:"+event.key+":");
 		if(event.key == " "){
 			if(0 < stock.length){
 				card.add(getRandom(0,stock.length-1));
@@ -153,9 +105,16 @@ window.onload = function(){
 			event.preventDefault();//スクロールを無効化
 		}
 	});
-	// btn.addEventListener("click",function(event){
-	// 	card.del(select);
-	// });
+	btn_hint.addEventListener("click",function(event){
+		// console.log("btn_hint is clicked!");
+		let hint_r = hint();
+		if(hint_r == undefined){
+			alert("ヒントはありません。");
+		}else{
+			// console.log("hint_r[0]:"+hint_r[0]);
+			select = hint_r[0];
+		}
+	});
 	loop();
 	// let c = 0;
 	function update(){
@@ -176,6 +135,69 @@ window.onload = function(){
 		requestAnimationFrame(loop);
 		update();
 		drawAll();
+	}
+	function hint(){
+		let kouho = [];
+		for(let i = 0;i < card.data.length;i++){
+			for(let j = 0;j < card.data.length;j++){
+				if(CardCheck(card,i,j)){
+					kouho.push([i,j]);
+					// console.log("yei:"+i+"&"+j);
+					// return;
+				}
+			}
+		}
+		// console.log("kouho:"+kouho);
+		return kouho[getRandom(0,kouho.length-1)];
+	}
+}
+
+function CardCheck(card,s1,s2){//card.dataのs1番目とs2番目が隣で同じか調べる。
+	if(s1 >= 0 && s2 >= 0 && s1 != s2){
+		if(card.data[s1].substr(1) == card.data[s2].substr(1)){
+			// console.log("b");
+			if(//左端
+				s1 % card_px == 0
+			){
+				// console.log("左端");
+				if(
+					s2 == s1-card_px ||//上
+					s2 == s1-card_px+1 ||//右上
+					s2 == s1+1 ||//右
+					s2 == s1+card_px ||//下
+					s2 == s1+card_px+1//右下
+				){
+					return true;
+				}
+			}else if(//右端
+				s1 % card_px == 3
+			){
+				// console.log("右端");
+				if(
+					s2 == s1-card_px ||//上
+					s2 == s1-card_px-1 ||//左上
+					s2 == s1-1 ||//左
+					s2 == s1+card_px ||//下
+					s2 == s1+card_px-1//左下
+				){
+					return true;
+				}
+			}else{
+				// console.log("真ん中");
+				if(
+					s2 == s1-card_px-1 ||//左上
+					s2 == s1-card_px ||//上
+					s2 == s1-card_px+1 ||//右上
+					s2 == s1+1 ||//右
+					s2 == s1-1 ||//左
+					s2 == s1+card_px-1 ||//左下
+					s2 == s1+card_px ||//下
+					s2 == s1+card_px+1//右下
+				){
+					return true;
+				}
+			}
+		}
 	}
 }
 

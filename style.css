@@ -23,6 +23,13 @@ header > ul > li{
 	display: inline;
 	font-size: 30px;
 }
+#button_hint{
+	margin: 0;
+	width: 60px;
+	height: 40px;
+	font-weight: bold;
+	background-color: #ff0;
+}
 /* header > a{
 	margin: 0;
 	line-height: 80px;
@@ -46,12 +53,12 @@ header > ul > li{
 	width: 100%;
 	/* max-width: 500px; */
 }
-button{
+/* button{
 	padding: 10px 20px;
 	position:fixed;
 	top:0px;
 	right:0px;
-}
+} */
 
 footer{
 	padding-bottom: 10px;
