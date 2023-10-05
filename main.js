@@ -23,6 +23,7 @@ window.onload = function(){
 	}
 	// console.log("img"+img);
 	let select = -1;
+	let select_c = "#00f";
 	// const s1 = new Image();
 	// s1.src = "image/s1.png";
 	// const s2 = new Image();
@@ -44,13 +45,14 @@ window.onload = function(){
 			if(select != -1){
 				ctx.beginPath();
 				ctx.rect((select%card_px)*card_w+card_w/2, Math.floor(select/card_px)*card_h+card_h/2,card_w,card_h);
-				ctx.strokeStyle = '#00f';
+				ctx.strokeStyle = select_c;
 				ctx.lineWidth = 4;
 				ctx.stroke();
 			}
 		},
 	};
 	cv.addEventListener("click",function(event){
+		select_c = "#00f";
 		let cx = (event.pageX-cv.offsetLeft)*canvas_ow/cv.clientWidth;
 		let cy = (event.pageY-cv.offsetTop)*canvas_oh/cv.clientHeight;
 		// console.log("clicked!!");
@@ -109,10 +111,12 @@ window.onload = function(){
 		// console.log("btn_hint is clicked!");
 		let hint_r = hint();
 		if(hint_r == undefined){
+			select = -1;
 			alert("ヒントはありません。");
 		}else{
 			// console.log("hint_r[0]:"+hint_r[0]);
 			select = hint_r[0];
+			select_c = "#ff0";
 		}
 	});
 	loop();
