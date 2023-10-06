@@ -30,9 +30,11 @@ header > ul > li{
 	font-weight: bold;
 }
 #button_hint{
+	color: #000;
 	background-color: #ff0;
 }
 #button_undo{
+	color: #000;
 	background-color: #f0f;
 }
 /* header > a{
