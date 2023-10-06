@@ -8,9 +8,11 @@ window.onload = function(){
 	console.log("Hello World!");
 	const cv = document.getElementById("myCanvas");
 	const btn_hint = document.querySelector("#button_hint");
+	const btn_undo = document.querySelector("#button_undo");
 	const ctx = cv.getContext("2d");
 	const img = {};
 	const stock = [];
+	const log = [];
 	let frames = 0;
 	const mark = ["s","c","d","h"];
 	for(m in mark){
@@ -37,7 +39,11 @@ window.onload = function(){
 		del:function(n){
 			this.data.splice(n,1);//n番目から1つ削除
 		},
+		insert:function(n,m){
+			this.data.splice(n,0,m);
+		},
 		draw:function(){
+			// console.log(card.data);
 			// const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
 				ctx.drawImage(img[this.data[i]],(i%card_px)*card_w+card_w/2,Math.floor(i/card_px)*card_h+card_h/2,card_w,card_h);
@@ -72,9 +78,11 @@ window.onload = function(){
 				if(CardCheck(card,select,i)){
 					// console.log("c");
 					if(select < i){
+						log.push([select,card.data[select],i,card.data[i]]);
 						card.del(i);
 						card.del(select);
 					}else{
+						log.push([i,card.data[i],select,card.data[select]]);
 						card.del(select);
 						card.del(i);
 					}
@@ -117,6 +125,19 @@ window.onload = function(){
 			// console.log("hint_r[0]:"+hint_r[0]);
 			select = hint_r[0];
 			select_c = "#ff0";
+		}
+	});
+	btn_undo.addEventListener("click",function(event){
+		// console.log("btn_undo is clicked!");
+		if(log.length == 0){
+			console.log("log is []");
+		}else{
+			let log_r = log[log.length-1];
+			console.log("log_r:"+log_r);
+			card.insert(log_r[0],log_r[1]);
+			card.insert(log_r[2],log_r[3]);
+			console.log("insert");
+			log.splice(log.length-1,1);
 		}
 	});
 	loop();

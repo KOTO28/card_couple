@@ -23,12 +23,17 @@ header > ul > li{
 	display: inline;
 	font-size: 30px;
 }
-#button_hint{
+.button{
 	margin: 0;
 	width: 60px;
 	height: 40px;
 	font-weight: bold;
+}
+#button_hint{
 	background-color: #ff0;
+}
+#button_undo{
+	background-color: #f0f;
 }
 /* header > a{
 	margin: 0;
