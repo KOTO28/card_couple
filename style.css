@@ -43,10 +43,12 @@ header > div{
 #button_hint{
 	color: #000;
 	background-color: #ff0;
+	border-color: #000;
 }
 #button_undo{
 	color: #000;
 	background-color: #f0f;
+	border-color: #000;
 }
 /* PC */
 @media(min-width:751px){
