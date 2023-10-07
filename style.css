@@ -11,22 +11,35 @@ header{
 	background-color: #777;
 	height: 80px;
 	width: 100%;
+	display: flex;
+	align-items: center;
 }
 header > ul{
-	margin: 0;
+	height: 30px;
+	margin: calc(40px - 15px) auto;
 	padding: 0;
 	text-align: center;
+	display: flex;
 }
 header > ul > li{
+	margin: 0 10px;
 	padding: 0 4px;
-	line-height: 80px;
-	display: inline;
-	font-size: 30px;
+	/* line-height: 80px; */
+	/* display: inline-block; */
+	list-style: none;
+	height: 100%;
+	font-weight: bold;
+}
+header > div{
+	height: 30px;
+	margin: calc(40px - 15px) auto;
+	padding: 0;
+	align-items: center;
+	display: flex;
 }
 .button{
-	margin: 0;
-	width: 60px;
-	height: 40px;
+	width: 80px;
+	height: 60px;
 	font-weight: bold;
 }
 #button_hint{
@@ -36,6 +49,24 @@ header > ul > li{
 #button_undo{
 	color: #000;
 	background-color: #f0f;
+}
+/* PC */
+@media(min-width:751px){
+	header > ul > li{
+		font-size: 30px;
+	}
+	.button{
+		margin: 0 20px;
+	}
+}
+/* スマホ */
+@media(max-width:750px){
+	header > ul > li{
+		font-size: 20px;
+	}
+	.button{
+		margin: 0 20px;
+	}
 }
 /* header > a{
 	margin: 0;
@@ -111,7 +142,17 @@ footer > p{
 } */
 /* スマホ */
 /* @media(max-width:750px){
-	#contener{
+	header > ul > li{
+		/* margin: 0 10px;
+		padding: 0 4px;
+		line-height: 80px;
+		display: inline-block;
+		list-style: none;
+		height: 100%; */
+		/* font-size: 100% !important; */
+		/* font-weight: bold;
+	} */
+	/* #contener{
 		height: 90%;
 		width: 100%;
 		display: flex;
@@ -143,4 +184,4 @@ footer > p{
 		height: 10%;
 		width: 100%;
 	}
-} */
+}*/
