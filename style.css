@@ -22,8 +22,8 @@ header > ul{
 	display: flex;
 }
 header > ul > li{
-	margin: 0 10px;
-	padding: 0 4px;
+	/* margin: 0 10px; */
+	/* padding: 0 4px; */
 	/* line-height: 80px; */
 	/* display: inline-block; */
 	list-style: none;
@@ -38,8 +38,6 @@ header > div{
 	display: flex;
 }
 .button{
-	width: 80px;
-	height: 60px;
 	font-weight: bold;
 }
 #button_hint{
@@ -53,19 +51,27 @@ header > div{
 /* PC */
 @media(min-width:751px){
 	header > ul > li{
+		margin-right: 30px;
 		font-size: 30px;
 	}
 	.button{
-		margin: 0 20px;
+		width: 80px;
+		height: 60px;
+		margin-right: 20px;
+		font-size: 16px;
 	}
 }
 /* スマホ */
 @media(max-width:750px){
 	header > ul > li{
+		margin-right: 10px;
 		font-size: 20px;
 	}
 	.button{
-		margin: 0 20px;
+		height: 40px;
+		width: 60px;
+		margin-right: 10px;
+		font-size: 12px;
 	}
 }
 /* header > a{
