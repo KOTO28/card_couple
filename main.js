@@ -11,7 +11,7 @@ window.onload = function(){
 	const btn_undo = document.querySelector("#button_undo");
 	const ctx = cv.getContext("2d");
 	const img = {};
-	const stock = [];
+	const stock_o = [];
 	const log = [];
 	let frames = 0;
 	const mark = ["s","c","d","h"];
@@ -20,8 +20,15 @@ window.onload = function(){
 		for (let i = 1; i <= 13; i++){
 			img[mark[m]+String(i)] = new Image();
 			img[mark[m]+String(i)].src = "image/"+mark[m]+String(i)+".png";
-			stock.push(mark[m]+String(i));
+			stock_o.push(mark[m]+String(i));
 		}
+	}
+	const stock = [];
+	for(let i = 0;stock_o.length > 0;i++){
+		let r = getRandom(0,stock_o.length-1);
+		console.log(stock_o[r]);
+		stock.push(stock_o[r]);
+		stock_o.splice(r,1);
 	}
 	// console.log("img"+img);
 	let select = -1;
@@ -36,6 +43,10 @@ window.onload = function(){
 			this.data.push(stock[n]);
 			stock.splice(n,1);//n番目から1つ削除
 		},
+		addFromStock:function(){
+			this.data.push(stock[0]);
+			stock.splice(0,1);//n番目から1つ削除
+		},
 		del:function(n){
 			this.data.splice(n,1);//n番目から1つ削除
 		},
@@ -46,6 +57,10 @@ window.onload = function(){
 			// console.log(card.data);
 			// const cardimg = img["s"+String(this.num)];
 			for(let i = 0;i < this.data.length;i++){
+				if(img[this.data[i]] == undefined){
+					console.error("img is not found!"+this.data[i]);
+					return;
+				}
 				ctx.drawImage(img[this.data[i]],(i%card_px)*card_w+card_w/2,Math.floor(i/card_px)*card_h+card_h/2,card_w,card_h);
 			}
 			if(select != -1){
@@ -97,7 +112,9 @@ window.onload = function(){
 			}
 		}
 		if(0 < stock.length){
-			card.add(getRandom(0,stock.length-1));
+			// card.add(getRandom(0,stock.length-1));
+			card.addFromStock();
+			log.push(-1);
 		}else{
 			alert("すべて出し切りました！");
 		}
@@ -107,7 +124,9 @@ window.onload = function(){
 		console.log("keypress:"+event.key+":");
 		if(event.key == " "){
 			if(0 < stock.length){
-				card.add(getRandom(0,stock.length-1));
+				// card.add(getRandom(0,stock.length-1));
+				card.addFromStock();
+				log.push(-1);
 			}else{
 				alert("すべて出し切りました！");
 			}
@@ -133,10 +152,16 @@ window.onload = function(){
 			console.log("log is []");
 		}else{
 			let log_r = log[log.length-1];
-			console.log("log_r:"+log_r);
-			card.insert(log_r[0],log_r[1]);
-			card.insert(log_r[2],log_r[3]);
-			console.log("insert");
+			if(log_r == -1){
+				stock.splice(0,0,card.data[card.data.length-1]);
+				card.data.splice(card.data.length-1,1);
+				console.log(card.data);
+			}else{
+				console.log("log_r:"+log_r);
+				card.insert(log_r[0],log_r[1]);
+				card.insert(log_r[2],log_r[3]);
+				console.log("insert");
+			}
 			log.splice(log.length-1,1);
 		}
 	});
