@@ -8,7 +8,7 @@
 - このゲームはスマホでも動作しますが、PCでのプレイを推奨しています。
 - 絶対にこのリポジトリのファイルを2次配布しないでください。（無許可でこのゲームを改変して公開する行為を含みます。）
 - このリポジトリをSNS等で紹介していただいてもかまいませんが、必ずこのリポジトリのURLを記述し、絶対に自作発言等はしないでください。
-- トランプの画像は[このサイト](https://chicodeza.com/freeitems/torannpu-illust.html "https://chicodeza.com/freeitems/torannpu-illust.html"){:target="_blank"}のものを使わせていただきました。
+- トランプの画像は[このサイト](https://chicodeza.com/freeitems/torannpu-illust.html){:target="_blank"}のものを使わせていただきました。
 
 ## このゲームについて
 
