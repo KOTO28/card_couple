@@ -144,6 +144,7 @@ window.onload = function(){
 			// console.log("hint_r[0]:"+hint_r[0]);
 			select = hint_r[0];
 			select_c = "#ff0";
+			scrollToCard(hint_r[0]);
 		}
 	});
 	btn_undo.addEventListener("click",function(event){
@@ -199,6 +200,17 @@ window.onload = function(){
 		}
 		// console.log("kouho:"+kouho);
 		return kouho[getRandom(0,kouho.length-1)];
+	}
+	function scrollToCard(n){
+		let cx = (n%card_px)*card_w+card_w/2 + card_w/2;
+		let x = cx * cv.clientWidth / canvas_ow + cv.offsetLeft - window.innerWidth / 2;
+		let cy = Math.floor(n/card_px)*card_h+card_h/2 + card_h/2;
+		let y = cy * cv.clientHeight / canvas_oh + cv.offsetLeft - window.innerHeight / 2;
+		window.scroll({
+			top: y,
+			left: x,
+			behavior: "smooth",
+		});
 	}
 }
 
